@@ -1,0 +1,402 @@
+/*********RESET CSS**********/
+:root{
+    --fuente-principal: sans-serif;
+    --tamanio-fuente:16px;
+    --color-principal:yellow;
+    --color-secundario:rgb(20, 20, 20);
+    --main-modal-color:rgba(236, 236, 14, 0.61);
+    --second-modal-color:rgba(19, 16, 16, 0.856);
+    --container-width:1200px;
+}
+html{
+    box-sizing: border-box;
+    font-family: var(--fuente-principal);
+    font-size: var(--tamanio-fuente);
+    scroll-behavior: smooth;
+}
+*,/*herencia a todos los elementos de html*/ 
+*:before,
+*:after{
+    box-sizing: inherit;/*se hereda el box-sizing*/
+}
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+/*********************MENU HAMBURGUESA*****************/
+.header{
+    position: sticky;
+    z-index: 997;
+    top: 0;
+    padding: 1rem;
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+}
+.header h1{
+    margin: 0 auto;
+    text-align: center;
+}
+.section{
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;
+    text-align: center;
+}
+.panel{
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow-y: auto;
+    background-color: var(--second-modal-color);
+    opacity: 0;
+    /*transicion*/
+    transition: transform 0.3s ease, opacity .3s ease;
+    /*de arriba hacia abajo*/
+    transform: translate(0,-100%);
+    /*de abajo hacia arriba*/
+    transform: translate(0,100%);
+    /*de derecha a izquierda*/
+    transform: translate(100%,0);
+    /*de izquierda hacia la derecha*/
+    transform: translate(-100%,0);
+}
+.panel.is-active{
+    transform: translate(0,0);
+    opacity: 1;
+}
+.panel-btn{
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    right: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-color:var(--color-principal);
+}
+.menu{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+.menu a{
+    padding: 2rem;
+    width: inherit;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-principal);
+    transition: all 0.3s ease;
+}
+.menu a:hover{
+    font-weight: bold;
+    color: var(--color-secundario);
+    background-color: var(--main-modal-color);
+}
+/*************EVENTOS DEL TECLADO*****************/
+.stage{
+    display: flex;
+    min-height: 50vh;
+    background-color: var(--color-secundario);
+}
+.bola{
+    margin: auto;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--color-principal);
+}
+/************BOTON SCROLL-TOP**************/
+.btn-scroll-top{
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    right: calc(4.25rem + 1vw);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    transition: all 0.3s ease-out;
+}
+.btn-scroll-top:hover{
+    background-color: rgb(255, 255, 65);
+    color: rgb(26, 26, 26);
+}
+.oculto{
+    visibility: hidden;
+    opacity: 0;
+}
+/************BOTON DARK-THEME**************/
+.btn-dark-theme{
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    left: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    transition: all 0.3s ease-out;
+}
+.btn-dark-theme:hover{
+    background-color: var(--color-secundario);
+}
+.modo-oscuro{
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+}
+.modo-oscuro .stage{
+    background-color: rgb(36, 36, 36);
+}
+.modo-oscuro .tarjeta{
+    background-color: rgb(36, 36, 36);
+}
+/********************ESTADO DE CONEXION***********/
+.online, .offline{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: mediumblue;
+    color: white;
+}
+.offline{
+    background-color: red;
+}
+/**********FILTROS DE BUSQUEDA**********/
+.tarjetas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+}
+.tarjeta{
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    transition: all 0.3s ease-out;
+}
+.tarjeta img{
+    width: 100%;
+    height: auto;
+}
+.tarjeta figcaption{
+    padding: 1rem;
+}
+.filtro{
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
+    order: 1;
+}
+/*****************CAROUSEL RESPONSIVO************/
+.carousel{
+    position: relative;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
+.slides{
+    position: relative;
+    height: 400px;
+}
+.presentacion{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+.presentacion img{
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+    /* object-position: 50% 0%; */
+}
+.presentacion.activo{
+    opacity: 1;
+    visibility: visible;
+}
+.btn_carousel{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.carousel a{
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    text-decoration: none;
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    transition: all 0.3s ease;
+}
+.carousel a:hover{
+    background-color: rgb(255, 255, 65);
+    color: var(--second-modal-color);
+}
+/*******ScrollSpy***********************/
+@media screen and (min-width:1024px){
+    body{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-rows: 4rem auto;
+        grid-template-areas: 
+        "header header"
+        "main   panel";
+    }
+    main{
+        grid-area: main;
+    }
+    .header{
+        grid-area: header;
+    }
+    .panel{
+        grid-area: panel;
+        align-self: start;
+        position:sticky;
+        z-index: 996;
+        top: 4rem;
+        justify-content: flex-start;
+        background-color: var(--color-secundario);
+        transform: translate(0,0);
+        opacity: 1;
+        visibility: visible;
+    }
+    .modo-oscuro .panel{
+        background-color: rgb(36, 36, 36);
+    }
+    .panel-btn{
+        display: none;
+    }
+    .menu{
+        justify-content: start;
+        text-align: right;
+    }
+    .menu a{
+        font-size: 1rem;
+        padding: .75rem;
+    }
+    .menu a:hover,
+    .menu a.activo{
+        color: var(--color-secundario);
+        background-color: var(--color-principal);
+    }
+    .btn-scroll-top{
+        right: initial;
+        left: calc(4.25rem + 1vw);
+    }
+}
+/*************************VIDEO INTELIGENTE*****************/
+video{
+    width: inherit;
+}
+/**********Validacion de formulario para contacto*********/
+.formulario-contacto{
+    --form-ok-color:green;
+    --form-error-color:red;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+.formulario-contacto > *{
+    padding: 0.5rem;
+    margin: 1rem auto;
+    display: block;
+    width: 100%;
+}
+.formulario-contacto textarea{
+    resize: none;
+}
+.formulario-contacto legend,
+.contacto-respuesta{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.formulario-contacto input,
+.formulario-contacto textarea{
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+.formulario-contacto input[type="submit"]{
+    width: 50%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.formulario-contacto *::placeholder{
+    color:black;
+}
+.formulario-contacto [required]:valid{
+    border:thin solid var(--form-ok-color);
+}
+.formulario-contacto [required]:invalid{
+    border: thin solid var(--form-error-color);
+}
+.formulario-contacto-error{
+    margin-top: 1rem;
+    font-size: 80%;
+    background-color: var(--form-error-color);
+    color: blanchedalmond;
+    transition: all 800ms ease;
+}
+.formulario-contacto-error.is-active{
+    display: block;
+    animation: show-message 1s 1 normal 0s ease-out both;
+}
+.none{
+    display: none;
+}
+@keyframes show-message{
+    0%{
+        visibility: hidden;
+        opacity: 0;
+    }
+    100%{
+        visibility: visible;
+        opacity: 1;
+    }
+}
+/**************FOOTER****************/
+.pie-pagina{
+    text-align: center;
+}
