@@ -1,5 +1,5 @@
 name: Deploy de mis practicas JS
-  on:
+on:
     push:
       branches:
         - main
